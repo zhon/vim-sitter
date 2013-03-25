@@ -1,5 +1,5 @@
 require "./version"
 
-module .
+module VimSetter
   # Your code goes here...
 end
