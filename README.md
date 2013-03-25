@@ -1,24 +1,22 @@
-# .
+# vim-sitter
 
-TODO: Write a gem description
+_vimsit_ a tool for keeping your _VIM_ just the way you like it:
+
+ 1. Create your backup, undo and swap directories.
+ 2. Setup sensible options (see tpope's vim-sensible)
+ 3. Install/update your plugins.
+
+Works on Window, Unix, Mac.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem '.'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install .
+    $ gem install vim-sitter
 
 ## Usage
 
-TODO: Write usage instructions here
+Configure your list of plugins to make VIM awesome!
+
+    $ vimsit
 
 ## Contributing
 
