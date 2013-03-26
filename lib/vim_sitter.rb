@@ -1,5 +1,3 @@
-require "./version"
+require "version"
 
-module VimSetter
-  # Your code goes here...
-end
+require 'vim_sitter/installation_check'

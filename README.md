@@ -1,6 +1,6 @@
 # vim-sitter
 
-_vimsit_ a tool for keeping your _VIM_ just the way you like it:
+__vimsit__ a tool for keeping your __VIM__ just the way you like it:
 
  1. Create your backup, undo and swap directories.
  2. Setup sensible options (see tpope's vim-sensible)
@@ -10,9 +10,13 @@ Works on Window, Unix, Mac.
 
 ## Installation
 
+
     $ gem install vim-sitter
 
 ## Usage
+
+You will need vim installed: http://www.vim.org/
+You will need git installed: http://git-scm.com/
 
 Configure your list of plugins to make VIM awesome!
 

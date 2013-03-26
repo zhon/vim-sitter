@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+$: << File.dirname(__FILE__)+'/../lib'
+
+require 'vim_sitter'
+
+include VimSitter
+
+def exit_with message
+  puts "Error #{message}!"
+  exit -1
+end
+
+exit_with "Missing 'Vim'" unless InstallationCheck.vim_installed?
+exit_with "Missing 'git'" unless InstallationCheck.git_installed?
+
