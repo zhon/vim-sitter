@@ -1,12 +1,8 @@
 require "vim_sitter/installation_check"
 
-require "minitest/unit"
-require 'flexmock'
+require_relative 'test_helper'
 
-MiniTest::Unit.autorun
-
-class InstallationCheckTest < MiniTest::Unit::TestCase
-  include FlexMock::TestCase
+class InstallationCheckTest < FlexMockTestCase
 
   def test_app_is_installed
     flexmock(InstallationCheck)
