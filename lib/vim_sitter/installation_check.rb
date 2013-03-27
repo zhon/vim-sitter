@@ -12,7 +12,7 @@ module VimSitter
 
     def self.app_installed? app
       begin
-        `#{app}--version`
+        `#{app} --version`
       rescue
         return false
       end

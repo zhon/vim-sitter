@@ -1,15 +1,14 @@
 # vim-sitter
 
-__vimsit__ a tool for keeping your __VIM__ just the way you like it:
+__vimsit__ a tool for keeping _your_ __VIM__ just the way _you_ like it:
 
  1. Create your backup, undo and swap directories.
- 2. Setup sensible options (see tpope's vim-sensible)
+ 2. Setup sensible options (using tpope's vim-sensible)
  3. Install/update your plugins.
 
 Works on Window, Unix, Mac.
 
 ## Installation
-
 
     $ gem install vim-sitter
 

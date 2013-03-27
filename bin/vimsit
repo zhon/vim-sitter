@@ -13,3 +13,8 @@ end
 exit_with "Missing 'Vim'" unless InstallationCheck.vim_installed?
 exit_with "Missing 'git'" unless InstallationCheck.git_installed?
 
+dir = VimDir.new
+
+dir.create_bundle
+
+
