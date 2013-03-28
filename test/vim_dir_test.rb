@@ -13,7 +13,7 @@ class VimDirTest < FlexMockTestCase
     dir = VimDir.new
     @mockFileUtils.should_receive(:mkdir_p)
       .once
-      .with( /vimfiles.bundle/)
+      .with(/vimfiles.bundle/)
     dir.create_bundle
   end
 
@@ -21,7 +21,7 @@ class VimDirTest < FlexMockTestCase
     dir = VimDir.new
     @mockFileUtils.should_receive(:mkdir_p)
       .once
-      .with( /vimfiles.autoload/)
+      .with(/vimfiles.autoload/)
     dir.create_autoload
   end
 
@@ -29,8 +29,24 @@ class VimDirTest < FlexMockTestCase
     dir = VimDir.new
     @mockFileUtils.should_receive(:mkdir_p)
       .once
-      .with( /AppData.+Vim.swap/)
+      .with(/AppData.+Vim.swap/)
     dir.create_swap
+  end
+
+  def test_create_windows_backup_dir
+    dir = VimDir.new
+    @mockFileUtils.should_receive(:mkdir_p)
+      .once
+      .with(/AppData.+Vim.backup/)
+    dir.create_backup
+  end
+
+  def test_create_windows_undo_dir
+    dir = VimDir.new
+    @mockFileUtils.should_receive(:mkdir_p)
+      .once
+      .with(/AppData.+Vim.undo/)
+    dir.create_undo
   end
 
 end

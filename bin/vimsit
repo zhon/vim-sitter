@@ -15,6 +15,10 @@ exit_with "Missing 'git'" unless InstallationCheck.git_installed?
 
 dir = VimDir.new
 
+dir.create_autoload
 dir.create_bundle
+dir.create_swap
+dir.create_backup
+dir.create_undo
 
 

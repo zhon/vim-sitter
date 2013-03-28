@@ -2,9 +2,8 @@ require 'fileutils'
 
 class VimDir
   # TODO need 
-  # .vim dir
-  # libarary vim dir
-  #
+  # linux
+  # mac
 
   def create_bundle
     bundle_dir = "#{base_dir}/bundle"
@@ -17,8 +16,19 @@ class VimDir
   end
 
   def create_swap
-    dir = ENV['AppData'].gsub('\\','/') + '/Vim/swap'
-    FileUtils.mkdir_p(dir)
+    FileUtils.mkdir_p(data_dir + '/swap')
+  end
+
+  def create_backup
+    FileUtils.mkdir_p(data_dir + '/backup')
+  end
+
+  def create_undo
+    FileUtils.mkdir_p(data_dir + '/undo')
+  end
+
+  def data_dir
+    ENV['AppData'].gsub('\\','/') + '/Vim'
   end
 
   def base_dir
