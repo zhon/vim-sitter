@@ -11,8 +11,7 @@ class VimDir
   end
 
   def create_autoload
-    bundle_dir = "#{base_dir}/autoload"
-    FileUtils.mkdir_p(bundle_dir)
+    FileUtils.mkdir_p(base_dir + '/autoload')
   end
 
   def create_swap
