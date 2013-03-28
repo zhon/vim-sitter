@@ -11,6 +11,16 @@ class VimDir
     FileUtils.mkdir_p(bundle_dir)
   end
 
+  def create_autoload
+    bundle_dir = "#{base_dir}/autoload"
+    FileUtils.mkdir_p(bundle_dir)
+  end
+
+  def create_swap
+    dir = ENV['AppData'].gsub('\\','/') + '/Vim/swap'
+    FileUtils.mkdir_p(dir)
+  end
+
   def base_dir
     File.expand_path("~/#{windows? ? 'vimfiles' : '.vim'}")
   end

@@ -5,13 +5,32 @@ require_relative 'test_helper'
 
 class VimDirTest < FlexMockTestCase
 
+  def setup
+    @mockFileUtils = flexmock(FileUtils)
+  end
+
   def test_create_windows_bundle_dir
     dir = VimDir.new
-    mock = flexmock(FileUtils)
-    mock.should_receive(:mkdir_p)
+    @mockFileUtils.should_receive(:mkdir_p)
       .once
       .with( /vimfiles.bundle/)
     dir.create_bundle
+  end
+
+  def test_create_windows_autoload_dir
+    dir = VimDir.new
+    @mockFileUtils.should_receive(:mkdir_p)
+      .once
+      .with( /vimfiles.autoload/)
+    dir.create_autoload
+  end
+
+  def test_create_windows_swap_dir
+    dir = VimDir.new
+    @mockFileUtils.should_receive(:mkdir_p)
+      .once
+      .with( /AppData.+Vim.swap/)
+    dir.create_swap
   end
 
 end
