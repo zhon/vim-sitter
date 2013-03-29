@@ -35,8 +35,12 @@ module VimSitter
       File.expand_path("~/#{windows? ? 'vimfiles' : '.vim'}")
     end
 
-    def self.cd_to_bundle
-      FileUtils.cd "#{base_dir}/bundle/"
+    def self.cd_to_bundle repo_name=''
+      FileUtils.cd "#{base_dir}/bundle/#{repo_name}"
+    end
+
+    def self.repo_exists? repo_name
+      File.exists? "#{base_dir}/bundle/#{repo_name}"
     end
 
     def self.windows?

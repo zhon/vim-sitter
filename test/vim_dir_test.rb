@@ -16,9 +16,25 @@ class VimDirTest < FlexMockTestCase
   def test_cd_to_bundle
     flexmock(FileUtils)
       .should_receive(:cd)
-      .with(/bundle/)
+      .with(/bundle\/$/)
       .once
       VimDir.cd_to_bundle
+  end
+
+  def test_cd_to_bundle_repo
+    flexmock(FileUtils)
+      .should_receive(:cd)
+      .with(/repo$/)
+      .once
+      VimDir.cd_to_bundle 'repo'
+  end
+
+  def test_repo_exists
+    flexmock(File)
+      .should_receive(:exists?)
+      .with(/repo/)
+      .once
+      VimDir.repo_exists? 'repo'
   end
 
   def check(method, regex)
