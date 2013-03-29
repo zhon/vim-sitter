@@ -13,6 +13,14 @@ class VimDirTest < FlexMockTestCase
     check :create_undo,     /AppData.+Vim.undo/
   end
 
+  def test_cd_to_bundle
+    flexmock(FileUtils)
+      .should_receive(:cd)
+      .with(/bundle/)
+      .once
+      VimDir.cd_to_bundle
+  end
+
   def check(method, regex)
     dir = VimDir.new
     flexmock(FileUtils)

@@ -7,12 +7,12 @@ module VimSitter
     # mac
 
     def create_bundle
-      bundle_dir = "#{base_dir}/bundle"
+      bundle_dir = "#{self.class.base_dir}/bundle"
       FileUtils.mkdir_p(bundle_dir)
     end
 
     def create_autoload
-      FileUtils.mkdir_p(base_dir + '/autoload')
+      FileUtils.mkdir_p(self.class.base_dir + '/autoload')
     end
 
     def create_swap
@@ -31,11 +31,15 @@ module VimSitter
       ENV['AppData'].gsub('\\','/') + '/Vim'
     end
 
-    def base_dir
+    def self.base_dir
       File.expand_path("~/#{windows? ? 'vimfiles' : '.vim'}")
     end
 
-    def windows?
+    def self.cd_to_bundle
+      FileUtils.cd "#{base_dir}/bundle/"
+    end
+
+    def self.windows?
       RUBY_PLATFORM =~ /(win|w)32$/
     end
 
