@@ -7,8 +7,7 @@ module VimSitter
     # mac
 
     def create_bundle
-      bundle_dir = "#{self.class.base_dir}/bundle"
-      FileUtils.mkdir_p(bundle_dir)
+      FileUtils.mkdir_p(self.class.bundle_dir)
     end
 
     def create_autoload
@@ -27,6 +26,14 @@ module VimSitter
       FileUtils.mkdir_p(data_dir + '/undo')
     end
 
+    def self.cd_to_bundle repo_name=''
+      FileUtils.cd "#{bundle_dir}/#{repo_name}"
+    end
+
+    def self.repo_exists? repo_name
+      File.exists? "#{bundle_dir}/#{repo_name}"
+    end
+
     def data_dir
       ENV['AppData'].gsub('\\','/') + '/Vim'
     end
@@ -35,12 +42,8 @@ module VimSitter
       File.expand_path("~/#{windows? ? 'vimfiles' : '.vim'}")
     end
 
-    def self.cd_to_bundle repo_name=''
-      FileUtils.cd "#{base_dir}/bundle/#{repo_name}"
-    end
-
-    def self.repo_exists? repo_name
-      File.exists? "#{base_dir}/bundle/#{repo_name}"
+    def self.bundle_dir
+      "#{base_dir}/bundle"
     end
 
     def self.windows?
