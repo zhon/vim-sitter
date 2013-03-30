@@ -18,7 +18,7 @@ class VimDirTest < FlexMockTestCase
       .should_receive(:cd)
       .with(/bundle\/$/)
       .once
-      VimDir.cd_to_bundle
+    VimDir.cd_to_bundle
   end
 
   def test_cd_to_bundle_repo
@@ -26,7 +26,7 @@ class VimDirTest < FlexMockTestCase
       .should_receive(:cd)
       .with(/repo$/)
       .once
-      VimDir.cd_to_bundle 'repo'
+    VimDir.cd_to_bundle 'repo'
   end
 
   def test_repo_exists
