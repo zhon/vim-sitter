@@ -21,5 +21,7 @@ dir.create_swap
 dir.create_backup
 dir.create_undo
 
-Gitter.get 'tpope', 'vim-pathogen'
+Pathogen.install
+
+
 

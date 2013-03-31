@@ -11,7 +11,7 @@ module VimSitter
     end
 
     def create_autoload
-      FileUtils.mkdir_p(self.class.base_dir + '/autoload')
+      FileUtils.mkdir_p self.class.autoload_dir
     end
 
     def create_swap
@@ -34,6 +34,10 @@ module VimSitter
       File.exists? "#{bundle_dir}/#{repo_name}"
     end
 
+    def self.cp_to_autoload path
+      FileUtils.cp "#{bundle_dir}/#{path}", autoload_dir
+    end
+
     def data_dir
       ENV['AppData'].gsub('\\','/') + '/Vim'
     end
@@ -44,6 +48,10 @@ module VimSitter
 
     def self.bundle_dir
       "#{base_dir}/bundle"
+    end
+
+    def self.autoload_dir
+      "#{base_dir}/autoload"
     end
 
     def self.windows?

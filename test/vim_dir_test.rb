@@ -34,7 +34,15 @@ class VimDirTest < FlexMockTestCase
       .should_receive(:exists?)
       .with(/repo/)
       .once
-      VimDir.repo_exists? 'repo'
+    VimDir.repo_exists? 'repo'
+  end
+
+  def test_cp_to_autoload
+    flexmock(FileUtils)
+      .should_receive(:cp)
+      .with(%r{/bundle/hello}, /autoload/)
+      .once
+    VimDir.cp_to_autoload 'hello'
   end
 
   def check(method, regex)
