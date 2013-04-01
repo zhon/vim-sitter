@@ -38,6 +38,25 @@ module VimSitter
       FileUtils.cp "#{bundle_dir}/#{path}", autoload_dir
     end
 
+    def self.add_to_vimrc s
+      new_lines = s.split("\n").map {|item| item + "\n"}
+      lines = IO.readlines(vimrc_dir)
+      unless lines & new_lines == new_lines
+        require 'tempfile'
+        begin
+          tmp = Tempfile.new('vimrc')
+          tmp.binmode
+          tmp.print new_lines.join
+          tmp.print lines.join
+          tmp.close
+          FileUtils.copy_file(tmp.path, vimrc_dir)
+        ensure
+          tmp.close
+          tmp.unlink
+        end
+      end
+    end
+
     def data_dir
       ENV['AppData'].gsub('\\','/') + '/Vim'
     end
@@ -52,6 +71,10 @@ module VimSitter
 
     def self.autoload_dir
       "#{base_dir}/autoload"
+    end
+
+    def self.vimrc_dir
+      File.expand_path("~/#{windows? ? '_vimrc' : '.vimrc'}")
     end
 
     def self.windows?
