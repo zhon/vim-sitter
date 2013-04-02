@@ -4,7 +4,7 @@ __vimsit__ a tool for keeping _your_ __VIM__ just the way _you_ like it:
 
  1. Create your backup, undo and swap directories.
  2. Setup sensible options (using tpope's vim-sensible)
- 3. Install/update your plugins.
+ 3. Install/update your plugins (via tpope's vim-pathogen)
 
 Works on Window, Unix, Mac.
 
