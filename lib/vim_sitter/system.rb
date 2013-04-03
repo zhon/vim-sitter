@@ -1,6 +1,6 @@
 
 module VimSitter
-  class InstallationCheck
+  class System
 
     def self.git_installed?
       app_installed? 'git'
