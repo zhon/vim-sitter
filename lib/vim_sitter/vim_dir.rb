@@ -6,23 +6,23 @@ module VimSitter
     # linux
     # mac
 
-    def create_bundle
-      FileUtils.mkdir_p(self.class.bundle_dir)
+    def self.create_bundle
+      FileUtils.mkdir_p(bundle_dir)
     end
 
-    def create_autoload
-      FileUtils.mkdir_p self.class.autoload_dir
+    def self.create_autoload
+      FileUtils.mkdir_p autoload_dir
     end
 
-    def create_swap
+    def self.create_swap
       FileUtils.mkdir_p(data_dir + '/swap')
     end
 
-    def create_backup
+    def self.create_backup
       FileUtils.mkdir_p(data_dir + '/backup')
     end
 
-    def create_undo
+    def self.create_undo
       FileUtils.mkdir_p(data_dir + '/undo')
     end
 
@@ -57,7 +57,7 @@ module VimSitter
       end
     end
 
-    def data_dir
+    def self.data_dir
       ENV['AppData'].gsub('\\','/') + '/Vim'
     end
 

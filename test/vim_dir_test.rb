@@ -73,7 +73,7 @@ class VimDirTest < FlexMockTestCase
   end
 
   def check(method, regex)
-    dir = VimDir.new
+    dir = VimDir
     flexmock(FileUtils)
       .should_receive(:mkdir_p)
       .once

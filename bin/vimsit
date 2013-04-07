@@ -13,13 +13,11 @@ end
 exit_with "Missing 'Vim'" unless System.vim_installed?
 exit_with "Missing 'git'" unless System.git_installed?
 
-dir = VimDir.new
-
-dir.create_autoload
-dir.create_bundle
-dir.create_swap
-dir.create_backup
-dir.create_undo
+VimDir.create_autoload
+VimDir.create_bundle
+VimDir.create_swap
+VimDir.create_backup
+VimDir.create_undo
 
 Pathogen.install
 
