@@ -39,4 +39,41 @@ class ConfigTest < FlexMockTestCase
     Config.create
   end
 
+  def test_each_iterates_over_config_file
+    Config.reset
+    flexmock(YAML)
+      .should_receive(:load_file)
+      .with(/config.yaml/)
+      .once
+      .and_return({
+        key: ['v1', 'v2']
+      })
+    Config.each { |k,v|
+      assert_equal(:key, k)
+      assert_equal('v1', v[0])
+      assert_equal('v2', v[1])
+    }
+    Config.each
+  end
+
+  def test_each_loads_file_only_once
+    Config.reset
+    flexmock(YAML)
+      .should_receive(:load_file)
+      .once
+      .and_return({
+        key: ['v1', 'v2']
+      })
+    Config.each
+    Config.each
+  end
+
+  def test_reload
+    flexmock(YAML)
+      .should_receive(:load_file)
+      .twice
+    Config.reload
+    Config.reload
+  end
+
 end
