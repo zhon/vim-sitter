@@ -23,5 +23,7 @@ Pathogen.install
 
 VimSitter::Config.create
 
+Bundle.install
+
 
 

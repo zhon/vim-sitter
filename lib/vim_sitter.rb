@@ -1,5 +1,6 @@
 require "version"
 
+require 'vim_sitter/bundle'
 require 'vim_sitter/config'
 require 'vim_sitter/gitter'
 require 'vim_sitter/pathogen'
