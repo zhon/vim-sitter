@@ -40,7 +40,7 @@ module VimSitter
 
     def self.add_to_vimrc s
       new_lines = s.split("\n").map {|item| item + "\n"}
-      lines = IO.readlines(vimrc_dir)
+      lines = IO.readlines(vimrc_path)
       unless lines & new_lines == new_lines
         require 'tempfile'
         begin
@@ -49,7 +49,7 @@ module VimSitter
           tmp.print new_lines.join
           tmp.print lines.join
           tmp.close
-          FileUtils.copy_file(tmp.path, vimrc_dir)
+          FileUtils.copy_file(tmp.path, vimrc_path)
         ensure
           tmp.close
           tmp.unlink
@@ -73,7 +73,7 @@ module VimSitter
       "#{base_dir}/autoload"
     end
 
-    def self.vimrc_dir
+    def self.vimrc_path
       File.expand_path("~/#{windows? ? '_vimrc' : '.vimrc'}")
     end
 
