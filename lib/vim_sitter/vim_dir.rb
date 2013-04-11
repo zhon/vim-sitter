@@ -4,7 +4,6 @@ module VimSitter
   class VimDir
     # TODO need 
     # linux
-    # mac
 
     def self.create_bundle
       FileUtils.mkdir_p(bundle_dir)
@@ -58,7 +57,13 @@ module VimSitter
     end
 
     def self.data_dir
-      ENV['AppData'].gsub('\\','/') + '/Vim'
+      if windows?
+        ENV['AppData'].gsub('\\','/') + '/Vim'
+      elsif mac?
+        File.expand_path "~/Library/Vim"
+      else
+        raise "os '#{RUBY_PLATFORM}' not recognized!"
+      end
     end
 
     def self.base_dir
@@ -79,6 +84,10 @@ module VimSitter
 
     def self.windows?
       RUBY_PLATFORM =~ /(win|w)32$/
+    end
+
+    def self.mac?
+      RUBY_PLATFORM =~ /darwin/
     end
 
   end

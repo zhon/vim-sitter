@@ -13,6 +13,57 @@ class VimDirTest < FlexMockTestCase
     check :create_undo,     /AppData.+Vim.undo/
   end
 
+  def test_vimrc_path_on_windows
+    flexmock(VimDir)
+      .should_receive(:windows?)
+      .and_return(true)
+      .once
+    assert_match /_vimrc/, VimDir.vimrc_path
+  end
+
+  def test_vimrc_path_on_unix_and_mac
+    flexmock(VimDir)
+      .should_receive(:windows?)
+      .and_return(false)
+      .once
+    assert_match /\.vimrc/, VimDir.vimrc_path
+  end
+
+  def test_base_dir_on_windows
+    flexmock(VimDir)
+      .should_receive(:windows?)
+      .and_return(true)
+      .once
+    assert_match /vimfiles/, VimDir.base_dir
+  end
+
+  def test_base_dir_on_unix_and_mac
+    flexmock(VimDir)
+      .should_receive(:windows?)
+      .and_return(false)
+      .once
+    assert_match /\.vim/, VimDir.base_dir
+  end
+
+  def test_data_dir_on_windows
+    flexmock(VimDir)
+      .should_receive(:windows?)
+      .and_return(true)
+      .once
+    assert_match /AppData/, VimDir.data_dir
+  end
+
+  def test_data_dir_on_mac
+    flexmock(VimDir)
+      .should_receive(:windows?)
+      .and_return(false)
+      .once
+      .should_receive(:mac?)
+      .and_return(true)
+      .once
+    assert_match /Library\/Vim/, VimDir.data_dir
+  end
+
   def test_cd_to_bundle
     flexmock(FileUtils)
       .should_receive(:cd)
