@@ -20,6 +20,14 @@ module VimSitter
       @@config.each &block
     end
 
+    def self.bundles
+      bundles = []
+      Config.each do |k,v|
+        bundles << v
+      end
+      bundles.flatten
+    end
+
     def self.reload
       @@config = YAML::load_file "#{VimDir.base_dir}/config.yaml"
     end

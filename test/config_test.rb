@@ -68,6 +68,18 @@ class ConfigTest < FlexMockTestCase
     Config.each
   end
 
+  def test_list_bundles
+    Config.reset
+    flexmock(YAML)
+      .should_receive(:load_file)
+      .once
+      .and_return({
+        key: ['v1', 'v2'],
+        key2: ['v3', 'v4']
+      })
+    assert_equal ['v1','v2','v3','v4'], Config.bundles
+  end
+
   def test_reload
     flexmock(YAML)
       .should_receive(:load_file)

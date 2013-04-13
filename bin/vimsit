@@ -25,5 +25,4 @@ VimSitter::Config.create
 
 Bundle.install
 
-
-
+Bundle.delete_unused
