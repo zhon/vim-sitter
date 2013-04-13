@@ -17,11 +17,10 @@ Works on Window, Unix, Mac.
 ## Usage
 
 You will need vim installed: http://www.vim.org/
+
 You will need git installed: http://git-scm.com/
 
-Configure your list of plugins to make VIM awesome!
-
-copy config.yaml.sample to your .vim/config.yaml
+Configure your list of plugins to make VIM awesome! (you could copy config.yaml.sample to ~/.vim/config.yaml)
 
     $ vimsit
 
