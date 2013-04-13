@@ -4,6 +4,7 @@ __vimsit__ a tool for keeping _your_ __VIM__ just the way _you_ like it:
 
  1. Create your backup, undo and swap directories.
  2. Setup sensible options (using tpope's vim-sensible)
+ 2. Create a minimal config file for you
  3. Install/update your plugins (via tpope's vim-pathogen)
  4. Remove any plugins not listed in your config.yaml
 
@@ -19,6 +20,8 @@ You will need vim installed: http://www.vim.org/
 You will need git installed: http://git-scm.com/
 
 Configure your list of plugins to make VIM awesome!
+
+copy config.yaml.sample to your .vim/config.yaml
 
     $ vimsit
 
