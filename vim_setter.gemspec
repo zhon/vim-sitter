@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "."
+  spec.name          = "vim-sitter"
   spec.version       = VimSitter::VERSION
   spec.authors       = ["zhon"]
   spec.email         = ["zhon@xputah.org"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{vim-sitter will install/remove plugins; setup directories; and help you manage your vim settings}
+  spec.summary       = %q{Helping you manage your settings}
+  spec.homepage      = "https://github.com/zhon/vim-sitter"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -21,5 +21,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "flexmock"
-
 end
