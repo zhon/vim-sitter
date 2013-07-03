@@ -164,9 +164,11 @@ class VimDirTest < FlexMockTestCase
       .should_receive(:touch)
       .with(/vimrc$/)
       .once
+      .should_receive(:copy_file)
+      .never
     flexmock(IO)
       .should_receive(:readlines)
-      .and_return(["some config\n", "silly\n"])
+      .and_return(["something\n", "silly\n"])
     VimDir.add_to_vimrc "something\nsilly"
   end
 
