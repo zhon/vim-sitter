@@ -38,6 +38,7 @@ module VimSitter
     end
 
     def self.add_to_vimrc s
+      FileUtils.touch(vimrc_path) unless File.exist? vimrc_path
       new_lines = s.split("\n").map {|item| item + "\n"}
       lines = IO.readlines(vimrc_path)
       unless lines & new_lines == new_lines

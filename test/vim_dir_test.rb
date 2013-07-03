@@ -123,6 +123,9 @@ class VimDirTest < FlexMockTestCase
   end
 
   def test_add_to_vimrc_does_nothing_if_already_there
+    flexmock(File)
+      .should_receive(:exist?)
+      .and_return(true)
     flexmock(IO)
       .should_receive(:readlines)
       .with(/vimrc$/)
@@ -135,6 +138,9 @@ class VimDirTest < FlexMockTestCase
   end
 
   def test_add_to_vimrc
+    flexmock(File)
+      .should_receive(:exist?)
+      .and_return(true)
     require 'tempfile'
     tempfile_mock = flexmock(close:nil, unlink:nil, print:nil,path:'',binmode:nil)
     flexmock(Tempfile).should_receive(:new).and_return(tempfile_mock)
@@ -146,6 +152,21 @@ class VimDirTest < FlexMockTestCase
       .should_receive(:copy_file)
       .with(//, /vimrc$/)
       .once
+    VimDir.add_to_vimrc "something\nsilly"
+  end
+
+  def test_add_to_vimrc_creates_file
+    flexmock(File)
+      .should_receive(:exist?)
+      .and_return(false)
+      .once
+    flexmock(FileUtils)
+      .should_receive(:touch)
+      .with(/vimrc$/)
+      .once
+    flexmock(IO)
+      .should_receive(:readlines)
+      .and_return(["some config\n", "silly\n"])
     VimDir.add_to_vimrc "something\nsilly"
   end
 
