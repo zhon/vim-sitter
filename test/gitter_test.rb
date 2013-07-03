@@ -26,6 +26,25 @@ class GitterTest < FlexMockTestCase
     Gitter.get author, repo_name
   end
 
+  def test_clone_repo_uses_HTTPS
+    author = 'jim'
+    repo_name = 'silly_code'
+    flexmock(VimDir)
+      .should_receive(:repo_exists?)
+      .and_return(false)
+    flexmock(Gitter)
+      .should_receive(:puts)
+      .with("Cloning #{repo_name}")
+    flexmock(VimDir)
+      .should_receive(:cd_to_bundle)
+    flexmock(Gitter)
+      .should_receive(:system)
+      .with(/git clone https/)
+      .once
+
+    Gitter.get author, repo_name
+  end
+
   def test_pull_repo
     author = 'jim'
     repo_name = 'silly_code'

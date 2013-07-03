@@ -11,7 +11,7 @@ module VimSitter
       else
         puts "Cloning #{repo_name}"
         VimDir.cd_to_bundle
-        system "git clone git://github.com/#{author}/#{repo_name}.git"
+        system "git clone https://github.com/#{author}/#{repo_name}.git"
       end
     end
 
