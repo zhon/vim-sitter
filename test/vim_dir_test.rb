@@ -64,6 +64,32 @@ class VimDirTest < FlexMockTestCase
     assert_match /Library\/Vim/, VimDir.data_dir
   end
 
+  def test_data_dir_on_linux
+    flexmock(VimDir)
+      .should_receive(:windows?)
+      .and_return(false)
+      .should_receive(:mac?)
+      .and_return(false)
+      .should_receive(:linux?)
+      .and_return(true)
+      .once
+    assert_match /\.vim/, VimDir.data_dir
+  end
+
+  def test_data_dir_raises_on_unknown_os
+    flexmock(VimDir)
+      .should_receive(:windows?)
+      .and_return(false)
+      .should_receive(:mac?)
+      .and_return(false)
+      .should_receive(:linux?)
+      .and_return(false)
+      .once
+    assert_raises(RuntimeError) {
+      VimDir.data_dir
+    }
+  end
+
   def test_cd_to_bundle
     flexmock(FileUtils)
       .should_receive(:cd)

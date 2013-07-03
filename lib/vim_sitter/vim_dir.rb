@@ -61,6 +61,8 @@ module VimSitter
         ENV['AppData'].gsub('\\','/') + '/Vim'
       elsif mac?
         File.expand_path "~/Library/Vim"
+      elsif linux?
+        File.expand_path "~/.vim"
       else
         raise "os '#{RUBY_PLATFORM}' not recognized!"
       end
@@ -88,6 +90,10 @@ module VimSitter
 
     def self.mac?
       RUBY_PLATFORM =~ /darwin/
+    end
+
+    def self.linux?
+      RUBY_PLATFORM =~ /linux/
     end
 
   end
