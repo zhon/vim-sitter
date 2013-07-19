@@ -19,7 +19,7 @@ module VimSitter
         File.directory?("#{VimDir.bundle_dir}/#{item}") && (item !~ /\.$/)
       }
       (bundles - Config.bundles).each do |item|
-        FileUtils.rm_rf "#{VimDir.bundle_dir}/#{item}", verbose: true
+        FileUtils.rm_rf "#{VimDir.bundle_dir}/#{item}", :verbose => true
       end
     end
 
