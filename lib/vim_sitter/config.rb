@@ -5,10 +5,10 @@ module VimSitter
   class Config
 
     @@config = nil
-
+    CONFIG_FILE = "#{VimDir.base_dir}/config.yaml"
     def self.create
-      unless File.exist?("#{VimDir.base_dir}/config.yaml")
-        store = YAML::Store.new "#{VimDir.base_dir}/config.yaml"
+      unless File.exist?(CONFIG_FILE)
+        store = YAML::Store.new CONFIG_FILE
         store.transaction do
           store['tpope'] = [ 'vim-pathogen', 'vim-sensible' ]
         end
@@ -29,7 +29,7 @@ module VimSitter
     end
 
     def self.reload
-      @@config = YAML::load_file "#{VimDir.base_dir}/config.yaml"
+      @@config = YAML::load_file CONFIG_FILE
     end
 
     def self.reset
