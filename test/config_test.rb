@@ -87,5 +87,6 @@ class ConfigTest < FlexMockTestCase
     Config.reload
     Config.reload
   end
-
+  
 end
+
