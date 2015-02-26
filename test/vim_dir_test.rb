@@ -46,11 +46,13 @@ class VimDirTest < FlexMockTestCase
   end
 
   def test_data_dir_on_windows
-    flexmock(VimDir)
-      .should_receive(:windows?)
-      .and_return(true)
-      .once
-    assert_match /AppData/, VimDir.data_dir
+    if windows?
+      flexmock(VimDir)
+        .should_receive(:windows?)
+        .and_return(true)
+        .once
+      assert_match /AppData/, VimDir.data_dir
+    end
   end
 
   def test_data_dir_on_mac
