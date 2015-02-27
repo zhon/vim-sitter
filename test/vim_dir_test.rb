@@ -5,12 +5,14 @@ require_relative 'test_helper'
 
 class VimDirTest < FlexMockTestCase
 
-  def test_create_windows_dirs
-    check :create_bundle,   /vimfiles.bundle/
-    check :create_autoload, /vimfiles.autoload/
-    check :create_swap,     /AppData.+Vim.swap/
-    check :create_backup,   /AppData.+Vim.backup/
-    check :create_undo,     /AppData.+Vim.undo/
+  if VimDir.windows?
+    def test_create_windows_dirs
+      check :create_bundle,   /vimfiles.bundle/
+      check :create_autoload, /vimfiles.autoload/
+      check :create_swap,     /AppData.+Vim.swap/
+      check :create_backup,   /AppData.+Vim.backup/
+      check :create_undo,     /AppData.+Vim.undo/
+    end
   end
 
   def test_vimrc_path_on_windows
@@ -46,13 +48,15 @@ class VimDirTest < FlexMockTestCase
   end
 
   def test_data_dir_on_windows
-    if windows?
       flexmock(VimDir)
         .should_receive(:windows?)
         .and_return(true)
         .once
-      assert_match /AppData/, VimDir.data_dir
-    end
+      flexmock(ENV)
+        .should_receive(:[])
+        .and_return("")
+        .once
+      assert_match /\/Vim/, VimDir.data_dir
   end
 
   def test_data_dir_on_mac
