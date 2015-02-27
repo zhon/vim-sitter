@@ -1,10 +1,22 @@
 ---
+dag:
+  - vim2hs
 digitaltoad:
   - vim-jade
 godlygeek:
   - tabular
+groenewege:
+  - vim-less
+jiangmiao:
+  - auto-pairs
+#kchmck:
+  #- vim-coffee-script
+mattn:
+  - emmet-vim
 msanders:
   - snipmate.vim
+nathanaelkane:
+  - vim-indent-guides
 pangloss:
   - vim-javascript
 tpope:
@@ -14,6 +26,7 @@ tpope:
   - vim-fugitive
   - vim-git
   - vim-haml
+  - vim-markdown
   - vim-pathogen
   - vim-rails
   - vim-repeat
